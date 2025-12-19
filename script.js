@@ -45,7 +45,7 @@ function circleSqueeze() {
   var xPrev = 0;
   var yPrev = 0;
   window.addEventListener("mousemove", function (dels) {
-    clearTimeout(timeOut)
+    clearTimeout(timeOut);
     var xDiff = dels.clientX - xPrev;
     var yDiff = dels.clientY - yPrev;
     xScale = gsap.utils.clamp(0.8, 1.2, xDiff);
@@ -54,12 +54,12 @@ function circleSqueeze() {
     xPrev = dels.clientX;
     yPrev = dels.clientY;
 
-    circleMouseFollower(xScale,yScale);
-    timeOut= this.setTimeout(function(){
-        document.querySelector(
-      "#minicircle"
-    ).style.transform = `translate(${dels.clientX}px, ${dels.clientY}px) scale(1,1)`;
-    },100);
+    circleMouseFollower(xScale, yScale);
+    timeOut = this.setTimeout(function () {
+      document.querySelector(
+        "#minicircle"
+      ).style.transform = `translate(${dels.clientX}px, ${dels.clientY}px) scale(1,1)`;
+    }, 100);
   });
 }
 
@@ -90,18 +90,18 @@ document.querySelectorAll(".elem").forEach(function (elem) {
 });
 
 function updateClock() {
-  const clockElement = document.getElementById('clock');
+  const clockElement = document.getElementById("clock");
   const now = new Date();
-  
+
   let hours = now.getHours();
   const minutes = now.getMinutes();
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-  
+  const ampm = hours >= 12 ? "PM" : "AM";
+
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
-  
-  const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
-  
+
+  const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+
   const timeString = `${hours}:${formattedMinutes} ${ampm}`;
   clockElement.textContent = timeString;
 }
