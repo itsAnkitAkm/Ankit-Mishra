@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ankit Mishra</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="loco.css" />
+    <link rel="icon" type="image/png" href="./ankit.png"/>
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
       rel="stylesheet"
     />
   </head>
   <body>
+    <div id="minicircle"></div>
     <div id="main">
       <div id="hero">
         <div id="nav">
@@ -18,15 +21,26 @@
           <h4>MENU+</h4>
         </div>
         <div id="heading">
-          <h1>Software</h1>
+          <div class="bounding">
+            <h1 class="boundingelem">Software</h1>
+          </div>
+
           <div class="blocktext">
-            <h1 id="secondh1">Engineer</h1>
-            <h5>Based in India</h5>
+            <div class="bounding">
+              <h1 class="boundingelem">Engineer</h1>
+            </div>
+            <div class="bounding">
+              <h5 class="boundingelem">Based in India</h5>
+            </div>
           </div>
         </div>
         <div id="chhotiheadings">
-          <h5>SDE-I at Techeagle</h5>
-          <h5>CSE GGSIPU'25</h5>
+          <div class="bounding">
+            <h5 class="boundingelem">SDE-I at Techeagle</h5>
+          </div>
+          <div class="bounding">
+            <h5 class="boundingelem">CSE GGSIPU'25</h5>
+          </div>
         </div>
         <div id="herofooter">
           <a href="https://github.com/itsAnkitAkm"
@@ -40,28 +54,26 @@
             <div class="circle"><i class="ri-arrow-down-line"></i></div>
           </div>
         </div>
-      </div> 
+      </div>
 
-     <div id="second">
-
+      <div id="second">
         <div class="elem">
-            <img src="./plug.png" alt="">
+          <img src="./plug.png" alt="" />
           <h1>The plug</h1>
           <h5>2025</h5>
         </div>
 
         <div class="elem">
-            <img src="./ixperience.png" alt="">
+          <img src="./ixperience.png" alt="" />
           <h1>Ixperience</h1>
           <h5>2025</h5>
         </div>
 
         <div class="elem elemLast">
-            <img src="./hudu.png" alt="">
-           <h1>hudu</h1>
-           <h5>2025</h5>
+          <img src="./hudu.png" alt="" />
+          <h1>hudu</h1>
+          <h5>2025</h5>
         </div>
-
       </div>
 
       <div id="about">
@@ -69,32 +81,40 @@
         <div id="textabout">
           <h5>(About Me)</h5>
           <p>
-            I’m a software Engineer who builds software out of curiosity more than routine.
-            I enjoy solving problems that don’t have obvious answers and
-            refining systems until they feel right. For me, engineering is less
-            about writing code and more about learning how to think clearly.
+            I’m a software Engineer who builds software out of curiosity more
+            than routine. I enjoy solving problems that don’t have obvious
+            answers and refining systems until they feel right. For me,
+            engineering is less about writing code and more about learning how
+            to think clearly.
           </p>
           <a href="">Let's Talk</a>
         </div>
-      </div> 
+      </div>
 
-       <div id="subscribe">
+      <div id="subscribe">
         <h5>(If you’re curious how I think, not just what I’ve done.)</h5>
         <h3>$ whoami --interactive<i class="ri-terminal-box-line"></i></h3>
       </div>
 
       <div id="footer">
         <div id="footerleft">
-            <h5>2023 &copy;</h5>
-            <h5>0:05 AM GST</h5>
+          <h5>2025 &copy;</h5>
+          <h5 id="clock"></h5>
         </div>
         <div id="footerright">
-            <a href="">Linkedin</a>
-            <a href="">Twitter</a>
-            <a href="">Leetcode</a>
+          <a href="">Linkedin</a>
+          <a href="">Twitter</a>
+          <a href="">Leetcode</a>
         </div>
       </div>
-
     </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+      integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
