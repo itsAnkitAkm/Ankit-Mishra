@@ -212,6 +212,10 @@ body {
   padding: 20px 30px;
   background-color: black;
   padding-bottom: 7vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 #subscribe h5 {
@@ -220,7 +224,7 @@ body {
 }
 
 #subscribe h3 {
-  font-size: 14px;
+  font-size: 18px;
   margin-top: 10px;
 }
 
