@@ -13,6 +13,7 @@
     />
   </head>
   <body>
+
     <div id="minicircle"></div>
     <div id="main">
       <div id="hero">
@@ -93,8 +94,14 @@
 
       <div id="subscribe">
         <h5>(If you’re curious how I think, not just what I’ve done.)</h5>
-        <h3>$ whoami --interactive <i class="ri-terminal-box-line"></i></h3>
+        <h3 id="terminalTrigger">$ whoami --interactive <i class="ri-terminal-box-line"></i></h3>
       </div>
+
+
+
+
+
+
 
       <div id="footer">
         <div id="footerleft">
@@ -108,6 +115,17 @@
         </div>
       </div>
     </div>
+    <div id="terminalModal">
+  <div class="terminalWrap">
+    
+    <div class="terminalTopBar">
+      <span id="closeTerminal">✕</span>
+    </div>
+
+    <iframe src="./terminal/terminal.html"></iframe>
+  </div>
+</div>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
       integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="

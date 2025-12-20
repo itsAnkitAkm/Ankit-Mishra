@@ -106,6 +106,14 @@ function updateClock() {
   clockElement.textContent = timeString;
 }
 
+const trigger = document.getElementById("terminalTrigger");
+const modal = document.getElementById("terminalModal");
+const closeBtn = document.getElementById("closeTerminal");
+
+
+
+
+
 // Update the clock immediately and then every minute
 updateClock();
 setInterval(updateClock, 60000);
@@ -113,3 +121,18 @@ setInterval(updateClock, 60000);
 circleMouseFollower();
 firstPageAnim();
 circleSqueeze();
+
+trigger.onclick = () => {
+  modal.classList.add("show");
+  // document.body.style.overflow = "hidden";
+  scroll.stop();
+};
+
+closeBtn.onclick = () => {
+  modal.classList.remove("show");
+  // document.body.style.overflow = "auto";
+    if (window.scroll) {
+    scroll.start();   // resume
+  scroll.update();   // <-- THIS fixes the ghost space
+  }
+};

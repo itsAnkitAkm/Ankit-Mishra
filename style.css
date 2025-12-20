@@ -216,17 +216,48 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
 }
 
 #subscribe h5 {
   text-transform: uppercase;
   opacity: 0.6;
+  letter-spacing: 1px;
 }
 
 #subscribe h3 {
   font-size: 18px;
   margin-top: 10px;
+  cursor: pointer;
+  color: #e6e6e6;
+  position: relative;
+  transition: color .3s ease;
 }
+
+/* Subtle underline animation */
+#subscribe h3::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #999, #fff);
+  transition: all .3s ease;
+  transform: translateX(-50%);
+}
+
+/* Hover effects */
+#subscribe h3:hover {
+  color: #ffffff;
+  text-shadow: 0px 0px 8px rgba(255,255,255,0.1);
+}
+
+#subscribe h3:hover::after {
+  width: 60%;
+  opacity: 0.9;
+}
+
 
 #footer {
   display: flex;
@@ -252,4 +283,76 @@ body {
   font-weight: 500;
   color: #fff;
   text-decoration: none;
+}
+
+
+
+
+#terminalModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(3px);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+
+/* show modal */
+#terminalModal.show {
+  display: flex;
+}
+
+/* Popup box */
+.terminalWrap {
+  background: #0d0d0d;
+  border-radius: 10px;
+  overflow: hidden; /* makes border + rounded shape clean */
+  box-shadow: 0 0 30px rgba(0,0,0,.7);
+}
+
+/* Top bar */
+.terminalTopBar {
+  height: 38px;
+  background: #111;
+  border-bottom: 1px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 12px;
+}
+
+/* Close button */
+#closeTerminal {
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  opacity: .8;
+}
+
+#closeTerminal:hover {
+  opacity: 1;
+}
+
+/* iframe window */
+.terminalWrap iframe {
+  width: 80vw;
+  height: 70vh;
+  border: none;
+  display: block;
+  background: black;
+}
+
+/* Mobile fullscreen */
+@media (max-width: 600px) {
+  .terminalWrap iframe {
+    width: 100vw;
+    height: calc(100vh - 38px);
+    border-radius: 0;
+  }
+
+  .terminalWrap {
+    border-radius: 0;
+  }
 }
