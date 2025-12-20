@@ -109,8 +109,7 @@ function updateClock() {
 const trigger = document.getElementById("terminalTrigger");
 const modal = document.getElementById("terminalModal");
 const closeBtn = document.getElementById("closeTerminal");
-
-
+const frame = document.getElementById("terminalFrame");
 
 
 
@@ -126,13 +125,14 @@ trigger.onclick = () => {
   modal.classList.add("show");
   // document.body.style.overflow = "hidden";
   scroll.stop();
+  setTimeout(() => frame.focus(), 50);
 };
 
 closeBtn.onclick = () => {
   modal.classList.remove("show");
   // document.body.style.overflow = "auto";
     if (window.scroll) {
-    scroll.start();   // resume
-  scroll.update();   // <-- THIS fixes the ghost space
+    scroll.start();   
+  scroll.update();   
   }
 };

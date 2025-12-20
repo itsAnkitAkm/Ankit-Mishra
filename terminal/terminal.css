@@ -14,7 +14,6 @@ body {
 
 #output{
     overflow-y: auto;
-    white-space: pre-wrap;
     line-height: 1.5;
     padding-bottom: 0;
 }
@@ -50,3 +49,4 @@ body {
 #output .line:last-child {
   margin-bottom: 0;
 }
+
