@@ -30,6 +30,13 @@ body {
   transform: translateY(100%);
 }
 
+/* Make all images responsive by default */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 #main {
   width: 100%;
   background-color: black;
@@ -355,6 +362,34 @@ body {
   .terminalWrap {
     border-radius: 0;
   }
+}
+
+/* Responsive: tablet and phone adjustments */
+@media (max-width: 1024px) {
+  #heading h1 { font-size: 7.5vw; }
+  #chhotiheadings { margin-top: 4vw; padding-right: 30px; }
+  #about { padding: 8vw 6vw; padding-left: 30vw; }
+  #textabout { width: 22rem; }
+}
+
+@media (max-width: 768px) {
+  #hero { height: auto; padding: 60px 20px; }
+  #heading h1 { font-size: 11vw; margin-left: 10px; }
+  #chhotiheadings { align-items: center; padding-right: 0; margin-top: 30px; }
+  #about { flex-direction: column; padding: 8vw 6vw; padding-left: 6vw; gap: 20px; }
+  #textabout { width: auto; }
+  #second { padding-top: 120px; }
+  .elem { padding: 4vw 3vw; }
+  .elem h1 { font-size: 10vw; }
+}
+
+@media (max-width: 480px) {
+  #nav { padding: 16px 18px; flex-direction: column; gap: 8px; }
+  #heading h1 { font-size: 14vw; }
+  #about { padding-left: 6vw; padding-right: 6vw; }
+  #textabout p { font-size: 15px; }
+  #subscribe { padding-bottom: 6vw; }
+  .elem h1 { font-size: 12vw; }
 }
 
 #second a{
