@@ -356,3 +356,8 @@ body {
     border-radius: 0;
   }
 }
+
+#second a{
+  text-decoration: none;
+  color: #fff;  
+}

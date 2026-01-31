@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Proxy Server - Ankit Mishra</title>
+    <link rel="stylesheet" href="proxy.css">
+    <link rel="icon" type="image/png" href="/assests/ankit.png" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <div id="main">
+        <!-- Navigation -->
+        <nav id="nav">
+            <a href="../../index.html">← Back to Portfolio</a>
+            <h4>Proxy Server</h4>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="hero">
+            <h1>Multithreaded HTTP Proxy Server</h1>
+            <div class="subtitle">
+                <span class="year">2025</span>
+                <span class="language">C | POSIX APIs</span>
+            </div>
+            <p class="description">A high-performance proxy server with concurrent request handling, LRU caching, and advanced thread synchronization.</p>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview">
+            <h2>(What this project does)</h2>
+            <ul class="features">
+                <li>Accepts multiple client connections over TCP</li>
+                <li>Uses a <strong>thread pool</strong> to handle concurrent requests</li>
+                <li>Implements a <strong>bounded request queue</strong> using semaphores</li>
+                <li>Forwards HTTP requests to the target server on cache miss</li>
+                <li>Stores responses in a shared <strong>LRU cache</strong></li>
+                <li>Serves cached responses directly on cache hit</li>
+                <li>Ensures thread safety using mutexes and semaphores</li>
+            </ul>
+        </section>
+
+        <!-- Why Section -->
+        <section id="why">
+            <h2>(Why this project)</h2>
+            <div class="why-content">
+                <p>
+                    Most backend systems hide concurrency behind frameworks. This project intentionally avoids abstractions and works directly with:
+                </p>
+                <div class="tech-stack">
+                    <div class="tech-item">sockets</div>
+                    <div class="tech-item">pthreads</div>
+                    <div class="tech-item">semaphores</div>
+                    <div class="tech-item">mutexes</div>
+                </div>
+                <p>
+                    It helped understand how concurrency, synchronization, and caching affect <strong>performance and correctness</strong> in real servers.
+                </p>
+            </div>
+        </section>
+
+        <!-- Architecture Section -->
+        <section id="architecture">
+            <h2>(High-level architecture)</h2>
+            <div class="arch-description">
+                <img src="/assests/hld-proxy.png" alt="">
+            </div>
+        </section>
+
+        <!-- Request Flow Section -->
+        <section id="flow">
+            <h2>(Request handling flow)</h2>
+            <!-- <ol class="flow-steps">
+                <li>A client connects to the proxy server</li>
+                <li>The main server thread accepts the connection</li>
+                <li>The request is placed into a bounded request queue</li>
+                <li>A worker thread dequeues the request</li>
+                <li>The worker checks the shared cache:
+                    <ul class="sub-flow">
+                        <li>If the response exists, it is returned immediately</li>
+                        <li>If not, the request is forwarded to the remote server</li>
+                    </ul>
+                </li>
+                <li>The response is stored in the cache using an LRU policy</li>
+                <li>The response is sent back to the client</li>
+                <li>The worker thread exits and releases resources</li>
+            </ol> -->
+            <img src="/assests/UML-proxy.png" alt="" >
+        </section>
+
+        <!-- Synchronization Section -->
+        <section id="sync">
+            <h2>(Synchronization primitives)</h2>
+            <div class="sync-grid">
+                <div class="sync-card">
+                    <h3>pthread_mutex_t</h3>
+                    <p>Protects shared data structures like the request queue and cache</p>
+                </div>
+                <div class="sync-card">
+                    <h3>sem_t empty</h3>
+                    <p>Tracks available slots in the request queue</p>
+                </div>
+                <div class="sync-card">
+                    <h3>sem_t full</h3>
+                    <p>Tracks the number of pending requests</p>
+                </div>
+            </div>
+            <p class="sync-benefit">
+                This design prevents <strong>race conditions</strong>, <strong>busy waiting</strong>, and <strong>unbounded thread creation</strong>
+            </p>
+        </section>
+
+        <!-- Data Handling Section -->
+        <section id="data-handling">
+            <h2>(Why data is handled in chunks)</h2>
+            <p>
+                HTTP responses are received over TCP, which is a <strong>stream-based protocol</strong>. There is no guarantee that the entire response will arrive in a single read.
+            </p>
+            <div class="benefits">
+                <h4>Reading data in chunks:</h4>
+                <ul>
+                    <li>Ensures correctness for partial reads</li>
+                    <li>Avoids large memory allocations</li>
+                    <li>Supports responses of unknown or large size</li>
+                    <li>Allows streaming data directly to the client</li>
+                </ul>
+            </div>
+            <p class="note">
+                This is how real proxy servers forward data efficiently.
+            </p>
+        </section>
+
+        <!-- Cache Design Section -->
+        <section id="cache">
+            <h2>(Cache design - LRU)</h2>
+            <ul class="cache-features">
+                <li>The cache is shared across all worker threads</li>
+                <li>Each entry maps a request URL to its response</li>
+                <li>On every cache hit, the access time is updated</li>
+                <li>When the cache reaches capacity, the <strong>least recently used</strong> entry is evicted</li>
+                <li>All cache operations are protected using a mutex</li>
+            </ul>
+            <p class="cache-benefit">
+                This significantly reduces response time for repeated requests.
+            </p>
+        </section>
+
+        <!-- Performance Section -->
+        <section id="performance">
+            <h2>(Performance results)</h2>
+            
+            <div class="perf-subsection">
+                <h3>Cache latency comparison</h3>
+                <p>
+                    This shows a large improvement when responses are served directly from memory.
+                </p>
+            </div>
+
+            <div class="perf-subsection">
+                <h3>Load testing</h3>
+                <p>
+                    The proxy was tested using <strong>ApacheBench</strong>:
+                </p>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-label">Total requests</span>
+                        <span class="metric-value">50</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Concurrency level</span>
+                        <span class="metric-value">5</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Requests per second</span>
+                        <span class="metric-value">~800+</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Mean latency</span>
+                        <span class="metric-value">~1–2 ms</span>
+                    </div>
+                </div>
+                <p class="stability-note">
+                    The server remained stable under concurrent load.
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>&copy; 2025 Ankit Mishra | Multithreaded HTTP Proxy Server</p>
+            <a href="../../index.html">← Back to Portfolio</a>
+        </footer>
+    </div>
+</body>
+</html>
